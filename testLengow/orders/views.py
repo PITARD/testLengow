@@ -1,7 +1,9 @@
 from django.shortcuts import render
 from django.template import loader
 from uuid import uuid4
+from rest_framework import viewsets
 
+from .serializers import OrderSerializer
 from .models import Order
 
 def index(request):
@@ -30,3 +32,10 @@ def add(request):
         O = Order.objects.create(order_id=uuid4(), marketplace=marketplace, order_amount =amount, order_commission=commission, order_purchase_date=purchaseDate)
         list_order = Order.objects.all()
         return render(request, 'list.html', {'list_order': list_order, 'detail': False})
+
+class OrdersViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows users to be viewed or edited.
+    """
+    queryset = Order.objects.all()
+    serializer_class = OrderSerializer

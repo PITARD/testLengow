@@ -67,6 +67,9 @@
                       </td>
                       {% else %}
                       <td>
+                        <a href="modifOrders/{{ order.order_id }}" class="secondary-content"><i class="material-icons">mode_edit</i></a>
+                      </td>
+                      <td>
                         <a href="list/{{ order.order_id }}" class="secondary-content"><i class="material-icons">send</i></a>
                       </td>
                       {% endif %}

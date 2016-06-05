@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>Orders - Lengow</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script>
+
+    </head>
+
+    <body>
+      <nav class="light-blue lighten-1" role="navigation">
+          <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">Lengow Test</a>
+            <ul class="right hide-on-med-and-down">
+              <li><a href="/admin">Admin</a></li>
+            </ul>
+          </div>
+        </nav>
+
+
+        <div class="section no-pad-bot" id="index-banner">
+            <div class="container">
+              <a class="waves-effect waves-light btn" href="/orders"><i class="material-icons left">arrow_back</i>Retour</a>
+              <h1>List of Orders</h1>
+              <table class="striped">
+                <thead>
+                  <th data-field='order_id'>
+                    Id
+                  </th>
+                  <th data-field='order_amount'>
+                    Amount
+                  </th>
+                  {% if detail %}
+                  <th data-field='order_commission'>
+                    Commission
+                  </th>
+                  <th data-field='order_purchase_date'>
+                    Purchase Date
+                  </th>
+                  <th data-field='marketplace'>
+                    marketplace
+                  </th>
+                  {% else %}
+                  <th>
+                  </th>
+                  {% endif %}
+                </thead>
+                <tbody>
+                  {% for order in list_order %}
+                    <tr>
+                      <td>
+                        {{ order.order_id }}
+                      </td>
+                      <td>
+                        {{ order.order_amount }}
+                      </td>
+                      {% if detail %}
+                      <td>
+                        {{ order.order_commission }}
+                      </td>
+                      <td>
+                        {{ order.order_purchase_date }}
+                      </td>
+                      <td>
+                        {{ order.marketplace }}
+                      </td>
+                      {% else %}
+                      <td>
+                        <a href="list/{{ order.order_id }}" class="secondary-content"><i class="material-icons">send</i></a>
+                      </td>
+                      {% endif %}
+
+                    </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+            </div>
+          </div>
+    </body>
+</html>
